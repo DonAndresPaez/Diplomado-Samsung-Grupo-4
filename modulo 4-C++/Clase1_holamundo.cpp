@@ -3,10 +3,10 @@
 
 int main()
 {
-	//esto es un comentario de una sola línea
+	//esto es un comentario de una sola linea
 	
 	/* Esto es un comentario
-	de varias líneas */
+	de varias lineas */
 		
 	printf("estoy escribiendo \n"); 
 	
