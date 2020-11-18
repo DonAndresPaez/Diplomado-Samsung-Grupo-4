@@ -11,5 +11,7 @@ int main()
 	printf("estoy escribiendo \n"); 
 	
 	system("pause"); 
+	
+	//una edición
 	return 0;
 }
