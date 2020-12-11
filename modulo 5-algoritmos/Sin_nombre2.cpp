@@ -1,15 +1,12 @@
-#include <stdio.h>
-#include <stdlib.h>
-#define length(x) (sizeof(x) / sizeof((x)[0]))
-#define size 10
+int busquedaLineal(int arreglo[size], int tamArreglo);
 
-void imprimirArreglo(int tamano, int arreglo[size]); //prototipo de funcion
 
 int main()
 {
 	int option = 0;
 	int arreglo[size]={1,2,3,4,5,6,7};
 	int tamArreglo=7;
+	int indice=0;
 	char instructions[6][100] =
 	{
 		"Busqueda lineal",
@@ -29,28 +26,28 @@ int main()
 	switch (option)
 	{
 		case 1:
-			printf("Instrucci髇. %s \n", instructions[option -1]);
+			indice=busquedaLineal(arreglo, tamArreglo);
 		break;
 		case 2:
-			printf("Instrucci髇. %s \n", instructions[option -1]);
+			printf("Instrucci贸n. %s \n", instructions[option -1]);
 		break;
 		case 3:
-			printf("Instrucci髇. %s \n", instructions[option -1]);
+			printf("Instrucci贸n. %s \n", instructions[option -1]);
 		break;
 		case 4:
-			printf("Instrucci髇. %s \n", instructions[option -1]);
+			printf("Instrucci贸n. %s \n", instructions[option -1]);
 		break;
 		case 5:
-			printf("Instrucci髇. %s \n", instructions[option -1]);
+			printf("Instrucci贸n. %s \n", instructions[option -1]);
 		break;
 		case 6:
-			printf("Instrucci髇. %s \n", instructions[option -1]);
+			printf("Instrucci贸n. %s \n", instructions[option -1]);
 		break;
 		default:
-			printf("Opci髇 no soportada\n");
+			printf("Opci贸n no soportada\n");
 		break;
 	}
-return 0;
+	return 0;
 }
 
 void imprimirArreglo(int tamano, int arreglo[size])
@@ -62,4 +59,21 @@ void imprimirArreglo(int tamano, int arreglo[size])
 	printf("\n");
 }
 
+int busquedaLineal(int arreglo[size], int tamArreglo)
+{
+    int valor_buscado=0;
+    int j;
+	printf("Ingrese el valor a buscar: ");
+    scanf("%d", &valor_buscado);
+    for(j=0; j<tamArreglo; j++)
+    {
+        if(arreglo[j]==valor_buscado)
+        {
+            printf("El valor se ha encontrado en la posici贸n: %d", j);
+            return j;
+        }
+    }
+    printf("El valor no se ha encontrado. No se encuentra en el arreglo");
+    return -1;
+}
 
