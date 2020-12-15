@@ -1,105 +1,154 @@
+#define capacidad 10 
+ 
 #include <stdio.h>
 #include <stdlib.h>
+ 
+void imprimirArreglo(int arreglo[capacidad], int tamArreglo); //prototipo de una funcion siempre antes del main
+int BusquedaLineal(int Arreglo[capacidad], int tamArreglo) ;
+int EliminarDesordenado(int Arreglo[capacidad], int tamArreglo);
+int EliminarOrdenado(int Arreglo[capacidad], int tamArreglo);
+int InsertarDesordenado(int Arreglo[capacidad], int tamArreglo);
+int InsertarOrdenado(int arreglo[capacidad], int tamArreglo);
 
-#define capacidad 10 
+int main(int argc, char *argv[]) {
+
+    int Arreglo[capacidad] = {1,2,3,4,5,6,7,};
+    int tamArreglo = 7;
+    int numero;
+    
+    imprimirArreglo(Arreglo, tamArreglo);
+	
+	printf("Seleccione una opcion: \n");
+    puts("1. Busqueda Lineal \n2. Eliminar Desordenado \n3. Eliminar Ordenado \n4. Insertar Desordenado \n5. Insertar Ordenado \n6. Intercambiar Elementos\n");
+    scanf("%i", &numero);
+    system("CLS");
+    switch(numero){
+	    case 1:
+	        BusquedaLineal(Arreglo,tamArreglo);
+	                
+	    break;
+	    case 2:
+	     	tamArreglo=EliminarDesordenado(Arreglo,tamArreglo);
+	     	imprimirArreglo(Arreglo, tamArreglo);
+	    break;
+	    case 3:
+	        tamArreglo=EliminarOrdenado(Arreglo,tamArreglo);
+	     	imprimirArreglo(Arreglo, tamArreglo);
+	    break;
+	    case 4:
+	        tamArreglo=InsertarDesordenado(Arreglo,tamArreglo);
+	     	imprimirArreglo(Arreglo, tamArreglo);
+	    break;
+	    case 5:
+	        tamArreglo=InsertarOrdenado(Arreglo,tamArreglo);
+	     	imprimirArreglo(Arreglo, tamArreglo);
+	    break;
+	    case 6:
+	        puts("\nIntercambiar Elementos");
+	    break;
+	    default:
+	        puts("\nOpcion Invalido");
+	    break;
+    }
+   return 0;
+}
+ 
+void imprimirArreglo(int arreglo[capacidad], int tamArreglo)
+{
+	int i;
+	printf("El arreglo es: \t ");
+    for(i=0;i<tamArreglo;i++){
+        printf("%i\t",arreglo[i]);
+    }
+    printf("\n");
+    
+}
  
 //busqueda lineal
 
-/*int main(int argc, char *argv[]) {
+int BusquedaLineal(int Arreglo[capacidad], int tamArreglo) 
+{
     int i = 0;
-    int CAPACIDAD = 10;
-    int arreglo[CAPACIDAD] = {2,4,6,8};
-    int tamArreglo = 4;
-    int valor_buscado = 6;
-
+    int valor_buscado = 0;
+    printf("Ingrese el valor a buscar\n");
+    scanf("%d", &valor_buscado);
+    
     for(i=0;i<tamArreglo;i++){
-        if(arreglo[i] == valor_buscado){
+        if(Arreglo[i] == valor_buscado){
             printf("\nSe encontro el elemento en la posicion %d del arreglo",i);
-            return 0;
+            return i;
         }
-        
-	}
+    }
     puts("No se encontro el elemento en el arreglo");
-    return 0;
-}*/
+    return -1;
+}
 
 //remover un elemento en arreglo desordenado
-/*
-int main(int argc, char** argv) {
-    int arreglo[capacidad] = {8,5,2,9,1,7,6};
-    int tam = 7;
-    int indiceEliminar = 3;
 
-    //Imprimiendo el arreglo antes
-    for(int i=0;i<tam;i++){
-        printf("%i",arreglo[i]);
-    }
-    printf("\n");
+int EliminarDesordenado(int Arreglo[capacidad], int tamArreglo) 
+{
+    int tamano= tamArreglo;  
+    int indiceEliminar = -1;
+    printf("Ingrese el indice a eliminar\n");
+    scanf("%d", &indiceEliminar);
 
-    arreglo[indiceEliminar] = arreglo[tam-1];
-    tam-=1;
+    Arreglo[indiceEliminar] = Arreglo[tamArreglo-1];
+    tamano-=1;
+    return tamano;
 
-    //Imprimiendo el arreglo
-    for(int i=0;i<tam;i++){
-        printf("%i",arreglo[i]);
-    }
-    printf("\n");
-    return 0;
-}*/
+}
 
 //remover un elemento en arreglo ordenado
-/*
-int main(int argc, char** argv) {
-    int arreglo[capacidad] = {1,2,3,4,5,6,7};
-    int tamArreglo = 7;
-    int indiceEliminar = 3;
+
+int EliminarOrdenado(int Arreglo[capacidad], int tamArreglo) 
+{
+    int indiceEliminar = -1;
     int i = 0;
 
-
-    printf("El tamanio del arreglo es %d \n", tamArreglo);
-    printf("El arreglo es ");
-    for(i=0;i<tamArreglo;i++){
-        printf("%i",arreglo[i]);
-    }
-    printf("\n");
+	printf("Ingrese el indice a eliminar\n");
+    scanf("%d", &indiceEliminar);
     for(i=indiceEliminar;i<tamArreglo;i++){
-        arreglo[i] = arreglo[i+1];
+        Arreglo[i] = Arreglo[i+1];
     }
     
-	tamArreglo=tamArreglo - 1;
-    
-    printf("El tamanio del arreglo es %d \n", tamArreglo);
-    printf("El arreglo es ");
-    for(int i=0;i<tamArreglo;i++){
-        printf("%i",arreglo[i]);
-    }
-    return 0;
-}*/
+	   return tamArreglo-1;
+}
 
 //Insertar elemento en arreglo desordenado
-int main(int argc, char** argv) {
-    int arreglo[capacidad] = {8,5,6,9,2,3,1};
-    int tamArreglo = 7;
-    int elementoInsertar = 13;
-    int i=0;
+int InsertarDesordenado(int Arreglo[capacidad], int tamArreglo) 
+{
+    int elementoInsertar = -1;
+    printf("Ingrese el elemento a insertar\n");
+    scanf("%d", &elementoInsertar);
+   
+	Arreglo[tamArreglo]=elementoInsertar;
+        
+   return tamArreglo + 1;
+}
 
-
-    printf("El tamanio del arreglo es %d \n", tamArreglo);
-    printf("El arreglo es ");
-    for(i=0;i<tamArreglo;i++){
-        printf("%i",arreglo[i]);
-    }
-    printf("\n");
-    
-	arreglo[tamArreglo]=elementoInsertar;
-    tamArreglo=tamArreglo + 1;
-    
-    printf("El tamanio del arreglo es %d \n", tamArreglo);
-    printf("El arreglo es ");
-    for(int i=0;i<tamArreglo;i++){
-        printf("%i",arreglo[i]);
-    }
-    return 0;
+int InsertarOrdenado(int Arreglo[capacidad], int tamArreglo){
+	int i;
+	int indice=tamArreglo; //suponemos que se va a poner al final del arreglo
+	int elemento;
+	// encontrar en donde se debe insertar
+	printf("Ingrese el elemento a insertar\n");
+    scanf("%d", &elemento);
+	
+	for(i=0;i<tamArreglo;i++){
+		if(elemento<Arreglo[i]){
+			indice=i;
+			break;
+		}				
+	}	
+	// se corren los elementos si es necesario
+	if(indice!= tamArreglo){
+		for(i=tamArreglo;i>=indice;i--){
+		Arreglo[i]=Arreglo[i-1];
+		}
+	}
+	// se inserta
+	Arreglo[indice]=elemento;
+	return tamArreglo+1;	
 }
 
 
