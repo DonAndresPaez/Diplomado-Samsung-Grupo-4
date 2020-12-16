@@ -204,4 +204,39 @@ void intercambiarElementos(int arreglo[size], int tamArreglo)
 	
 }
 
+/*
+Esta función ordena los elementos en forma ascendente con el metodo de intercambio
+
+La funcion recibe el arreglo y el tamaño del arreglo
+La funcion no retorna un valor.
+*/
+void ordenarAscendenteMetodoIntercambio(int arreglo[CAPACIDAD], int tamArreglo){
+	int i,j;
+	for(i=0;i<tamArreglo-1;i++){
+		for(j=i+1;j<tamArreglo;j++){
+			if(arreglo[i]>arreglo[j]){
+				intercambiarElementosArreglo(arreglo,tamArreglo,i,j);
+			}
+		}
+	}
+}
+
+/*
+Esta función ordena los elementos en forma ascendente con el metodo de selección
+
+La funcion recibe el arreglo y el tamaño del arreglo
+La funcion no retorna un valor.
+*/
+void ordenarAscendenteMetodoSeleccion(int arreglo[CAPACIDAD], int tamArreglo){
+	int i,j,indiceMenor;
+	for(i=0;i<tamArreglo-1;i++){
+		indiceMenor=i;
+		for(j=i+1;j<tamArreglo;j++){
+			if(arreglo[indiceMenor]>arreglo[j]){
+				indiceMenor=j;	
+			}
+		}
+		intercambiarElementosArreglo(arreglo,tamArreglo,i,indiceMenor);
+	}
+}
 
